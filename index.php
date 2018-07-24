@@ -19,6 +19,14 @@
 
     $total = mysqli_num_rows($dados);
 
+    $querycarousel = sprintf("SELECT * FROM imagens");
+
+    $dadoscarousel = mysqli_query($conexao, $querycarousel) or die(mysql_error());
+
+    $linhacarousel = mysqli_fetch_assoc($dadoscarousel);
+
+    $totalcarousel = mysqli_num_rows($dadoscarousel);
+
         ?>
 
 
@@ -54,26 +62,24 @@
                             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                         </ol>
+                        <?php $slide = 1; ?>
                         <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active">
-                            	<?php $img ="assets/img/bg1.jpg";  ?>
-                                <img class="d-block" src="<?php echo $img; ?>" alt="First slide">
+
+                            <?php if($totalcarousel > 1){
+                                do{
+                                    if($slide == 1)
+                                        $carouseldiv = "carousel-item active";
+                                    else
+                                        $carouseldiv = "carousel-item";
+                                    ?>
+                            <div class="<?php echo $carouseldiv ?>">
+                                <img class="d-block" src="foto/<?php echo $linhacarousel['nome_imagem'] ?>" alt="Slide <?php echo $slide; $slide++ ?>">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>Nature, United States</h5>
+                                    <h5>Recuperação de Nascentes</h5>
                                 </div>
                             </div>
-                            <div class="carousel-item">
-                                <img class="d-block" src="assets/img/bg3.jpg" alt="Second slide">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>Somewhere Beyond, United States</h5>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block" src="assets/img/bg4.jpg" alt="Third slide">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>Yellowstone National Park, United States</h5>
-                                </div>
-                            </div>
+                        <?php }while($linhacarousel = mysqli_fetch_assoc($dadoscarousel)); }?>
+
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                             <i class="now-ui-icons arrows-1_minimal-left"></i>
