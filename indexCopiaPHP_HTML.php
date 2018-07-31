@@ -49,7 +49,7 @@
     <link href="adicoes.css" rel="stylesheet" />
 </head>
 
-<body class="index-page sidebar-collapse" onLoad="loadInicial();">
+<body class="index-page sidebar-collapse">
 	<?php include "cabecalho.php" ?>
 
 	<div class="section" id="carousel">
@@ -62,26 +62,24 @@
                             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                         </ol>
+                        <?php $slide = 1; ?>
                         <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active">
-                                <img id="imgCar1" class="d-block" src="" alt="First slide">
+
+                            <?php if($totalcarousel > 1){
+                                do{
+                                    if($slide == 1)
+                                        $carouseldiv = "carousel-item active";
+                                    else
+                                        $carouseldiv = "carousel-item";
+                                    ?>
+                            <div class="<?php echo $carouseldiv ?>">
+                                <img class="d-block" src="foto/<?php echo $linhacarousel['nome_imagem'] ?>" alt="Slide <?php echo $slide; $slide++ ?>">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5 id="txtCar1"></h5>
+                                    <h5>Recuperação de Nascentes</h5>
                                 </div>
                             </div>
-                            <div class="carousel-item">
-                                <img id="imgCar2" class="d-block" src="" alt="Second slide">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5 id="txtCar2"></h5>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img id="imgCar3" class="d-block" src="" alt="Third slide">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5 id="txtCar3"></h5>
-                                </div>
-                            </div>
-                        </div>
+                        <?php }while($linhacarousel = mysqli_fetch_assoc($dadoscarousel)); }?>
+
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                             <i class="now-ui-icons arrows-1_minimal-left"></i>
@@ -100,23 +98,28 @@
         <div class="container">
             <p class="category">Noticias Recentes</p>
             <div class="row">
+                <?php 
+                    if($total > 0){
+                        do{
+
+                 ?>
                 <div class="col-md-10 col-lg-8 col-xl-6 ml-auto mr-auto">
                     <!-- Nav tabs -->
                     <div class="card">
                         <!--<ul class="nav nav-tabs justify-content-center" role="tablist">-->
                         <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
-                            <li id="titCard1" class="nav-item"></li>
+                            <li class="nav-item"><?php echo $linha['titulo']?></li>
                         </ul>
                         <div class="card-body">
                             <!-- Tab panes -->
                             <div class="row">
                                 <div class="col-md-10 col-lg-8 col-xl-6 ml-auto mr-auto">
-                                    <img id="imgCard1" class="card-img" src="" alt="Card image cap">
+                                    <img class="card-img" src="foto/<?php echo $linha['imagem']?>" alt="Card image cap">
                                 </div>
                                 <div class="col-md-10 col-lg-8 col-xl-6 ml-auto mr-auto">
                                     <div class="tab-content text-center">
                                         <div class="tab-pane active" id="home" role="tabpanel">
-                                            <p id="txtCard1"></p>
+                                            <p><?php echo mb_substr( "{$linha['conteudo']}", 0, 190, 'UTF-8' ); echo "..."; ?></p>
                                             <button class="btn btn-primary" type="button" onclick="location.href='apresentacaoCards.php'">Saber mais</button>
                                         </div>                                
                                     </div>
@@ -125,56 +128,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-10 col-lg-8 col-xl-6 ml-auto mr-auto">
-                    <!-- Nav tabs -->
-                    <div class="card">
-                        <!--<ul class="nav nav-tabs justify-content-center" role="tablist">-->
-                        <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
-                            <li id="titCard2" class="nav-item"></li>
-                        </ul>
-                        <div class="card-body">
-                            <!-- Tab panes -->
-                            <div class="row">
-                                <div class="col-md-10 col-lg-8 col-xl-6 ml-auto mr-auto">
-                                    <img id="imgCard2" class="card-img" src="" alt="Card image cap">
-                                </div>
-                                <div class="col-md-10 col-lg-8 col-xl-6 ml-auto mr-auto">
-                                    <div class="tab-content text-center">
-                                        <div class="tab-pane active" id="home" role="tabpanel">
-                                            <p id="txtCard2"></p>
-                                            <button class="btn btn-primary" type="button" onclick="location.href='apresentacaoCards.php'">Saber mais</button>
-                                        </div>                                
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-10 col-lg-8 col-xl-6 ml-auto mr-auto">
-                    <!-- Nav tabs -->
-                    <div class="card">
-                        <!--<ul class="nav nav-tabs justify-content-center" role="tablist">-->
-                        <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
-                            <li id="titCard3" class="nav-item"></li>
-                        </ul>
-                        <div class="card-body">
-                            <!-- Tab panes -->
-                            <div class="row">
-                                <div class="col-md-10 col-lg-8 col-xl-6 ml-auto mr-auto">
-                                    <img id="imgCard3" class="card-img" src="" alt="Card image cap">
-                                </div>
-                                <div class="col-md-10 col-lg-8 col-xl-6 ml-auto mr-auto">
-                                    <div class="tab-content text-center">
-                                        <div class="tab-pane active" id="home" role="tabpanel">
-                                            <p id="txtCard3"></p>
-                                            <button class="btn btn-primary" type="button" onclick="location.href='apresentacaoCards.php'">Saber mais</button>
-                                        </div>                                
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php }while($linha = mysqli_fetch_assoc($dados)); 
+                 }?>
+
             </div>
         </div>
     </div>
@@ -210,7 +166,5 @@
     }
 }*/
 </script>
-
-<script src="loadInicial.js"></script>
 
 </html>
