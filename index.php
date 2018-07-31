@@ -1,35 +1,3 @@
-<?php
-
-    session_start();
-
-    $host = "localhost";
-    $user = "root";
-    $senha = "";
-    $banco = "admin";
-
-    $conexao = mysqli_connect($host, $user, $senha, $banco) or die(mysqli_error());
-
-    mysqli_select_db($conexao, $banco); 
-
-    $query = sprintf("SELECT * FROM publicacao");
-
-    $dados = mysqli_query($conexao, $query) or die(mysql_error());
-
-    $linha = mysqli_fetch_assoc($dados);
-
-    $total = mysqli_num_rows($dados);
-
-    $querycarousel = sprintf("SELECT * FROM imagens");
-
-    $dadoscarousel = mysqli_query($conexao, $querycarousel) or die(mysql_error());
-
-    $linhacarousel = mysqli_fetch_assoc($dadoscarousel);
-
-    $totalcarousel = mysqli_num_rows($dadoscarousel);
-
-        ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- CSS Files -->
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="./assets/css/now-ui-kit.css?v=1.1.0" rel="stylesheet" /> 
+    <link href="./assets/css/now-ui-kit.css?v=1.1.0" rel="stylesheet" />
     <link href="adicoes.css" rel="stylesheet" />
 </head>
 
@@ -118,7 +86,7 @@
                                         <div class="tab-pane active" id="home" role="tabpanel">
                                             <p id="txtCard1"></p>
                                             <button class="btn btn-primary" type="button" onclick="location.href='apresentacaoCards.php'">Saber mais</button>
-                                        </div>                                
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +111,7 @@
                                         <div class="tab-pane active" id="home" role="tabpanel">
                                             <p id="txtCard2"></p>
                                             <button class="btn btn-primary" type="button" onclick="location.href='apresentacaoCards.php'">Saber mais</button>
-                                        </div>                                
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +136,7 @@
                                         <div class="tab-pane active" id="home" role="tabpanel">
                                             <p id="txtCard3"></p>
                                             <button class="btn btn-primary" type="button" onclick="location.href='apresentacaoCards.php'">Saber mais</button>
-                                        </div>                                
+                                        </div>
                                     </div>
                                 </div>
                             </div>
